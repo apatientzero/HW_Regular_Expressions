@@ -36,7 +36,7 @@ def format_phone(phone):
             ext = digits[11:]
             formatted += f" доб.{ext}"
         return formatted
-    return phone  # если не удалось распознать — возвращаем как есть
+    return phone 
 
 
 # Чтение исходного файла
@@ -47,7 +47,7 @@ with open("phonebook_raw.csv", encoding="utf-8") as f:
 # Словарь для хранения уникальных контактов: ключ — (Фамилия, Имя)
 contacts_dict = {}
 
-for contact in contacts_list[1:]:  # пропускаем заголовок
+for contact in contacts_list[1:]:
     lastname, firstname, surname = normalize_name(contact[0], contact[1], contact[2])
     key = (lastname, firstname)
 
@@ -83,12 +83,13 @@ for contact in contacts_list[1:]:  # пропускаем заголовок
         ]
 
 # Формируем итоговый список с заголовком
-result = [contacts_list[0]]  # сохраняем заголовок
+result = [contacts_list[0]]  
 result.extend(contacts_dict.values())
 
 # Сохраняем результат
 with open("phonebook.csv", "w", encoding="utf-8", newline='') as f:
     datawriter = csv.writer(f, delimiter=',')
     datawriter.writerows(result)
+
 
 pprint(result)
